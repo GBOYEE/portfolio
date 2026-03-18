@@ -9,19 +9,32 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
-  <header style="background:rgba(10,10,10,0.95);backdrop-filter:blur(8px);position:sticky;top:0;z-index:100;border-bottom:1px solid #222;padding:1rem 0;">
-  <div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;">
-    <a href="index.html" style="font-size:1.5rem;font-weight:700;color:#e5e5e5;text-decoration:none;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">OA</a>
-    <nav style="display:flex;gap:2rem;">
-      <a href="index.html" style="color:#a3a3a3;text-decoration:none;font-weight:500;transition:color .2s;">Home</a>
-      <a href="projects.html" style="color:#a3a3a3;text-decoration:none;font-weight:500;transition:color .2s;">Projects</a>
-      <a href="services.html" style="color:#a3a3a3;text-decoration:none;font-weight:500;transition:color .2s;">Services</a>
-      <a href="about.html" style="color:#a3a3a3;text-decoration:none;font-weight:500;transition:color .2s;">About</a>
-      <a href="experience.html" style="color:#a3a3a3;text-decoration:none;font-weight:500;transition:color .2s;">Experience</a>
-      <a href="contact.html" style="color:#a3a3a3;text-decoration:none;font-weight:500;transition:color .2s;">Contact</a>
-    </nav>
-  </div>
+<header class="site-header">
+  <nav class="nav-container" aria-label="Main navigation">
+    <div class="nav-brand">
+      <a href="index.html" class="logo gradient-text">OA</a>
+    </div>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+      <span class="hamburger"></span>
+    </button>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="services.html" class="nav-link">Services</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="experience.html" class="nav-link">Experience</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://github.com/GBOYEE" target="_blank" rel="noopener" aria-label="GitHub" class="social-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.69c-2.78.61-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.88 1.51 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0112 6.8c.85.004 1.71.11 2.52.33 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .26.18.57.69.49C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
+      </a>
+    </div>
+  </nav>
 </header>
+
+
+  
 
   <main class="container">
 <h2>Contact</h2>
@@ -35,5 +48,19 @@
       <p>© 2026 Oyebanji Adegboyega • <a href="https://github.com/GBOYEE" target="_blank">GitHub</a></p>
     </div>
   </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
+      menu.classList.toggle('active');
+    });
+  }
+});
+</script>
 </body>
 </html>
