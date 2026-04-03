@@ -303,73 +303,64 @@
 // Project data
 const projects = [
  {
-  name: "aiopsx",
-  description: "Autonomous infrastructure AI engineer — monitors, diagnoses, and fixes issues with safety and human oversight.",
-  long_description: "aiopsx is a production-ready AI system that monitors infrastructure, analyzes logs and metrics, diagnoses root causes, and applies fixes with safety guarantees. Features include Streamlit dashboard for human-in-the-loop approvals, risk-based action controls, and full audit trail. Built with FastAPI, PostgreSQL, and Ollama.",
-  tech: ["FastAPI", "PostgreSQL", "Ollama", "Streamlit"],
-  category: "ai",
-  github: "https://github.com/GBOYEE/aiopsx",
-  demo: null
- },
- {
-  name: "xander-hive-framework",
-  description: "Orchestration engine for autonomous multi-agent systems — persistent sessions, shared vector memory, Redis event bus.",
-  long_description: "A sophisticated framework for coordinating multiple AI agents. Provides persistent conversation sessions, shared vector memory for context, Redis-based event bus for communication, and RLHF-style improvement loops. Designed for building complex autonomous systems that can learn from experience.",
-  tech: ["Python", "Redis", "Chroma", "Vector DB"],
-  category: "ai",
-  github: "https://github.com/GBOYEE/xander-hive-framework",
-  demo: null
- },
- {
-  name: "openclaw",
-  description: "Unified AI automation workspace — three brains (agent-core, automation-engine, trading-lab) under one gateway.",
-  long_description: "OpenClaw is your all-in-one AI workspace. It combines three powerful modules: agent-core (thinking, planning, learning), automation-engine (scheduling, webhooks, file watching), and trading-lab (backtesting, optimization). All controlled through a single FastAPI gateway with approvals, metrics, and memory.",
-  tech: ["FastAPI", "Agent Framework", "Orchestration"],
-  category: "infra",
-  github: "https://github.com/GBOYEE/openclaw",
-  demo: null
- },
- {
-  name: "xander-operator",
-  description: "AI developer agent that writes code and applies changes safely — GSD planning, Playwright browse/fill, git-backed rollback.",
-  long_description: "Xander Operator is an AI agent that actually writes code and applies changes to your codebase. It uses GSD planning to break tasks into steps, uses Playwright for browser automation, maintains SQLite vector memory, and creates git commits for every action so you can roll back. Includes safety controls: dry-run mode, approval queues, workspace sandbox.",
-  tech: ["Playwright", "Ollama", "FastAPI", "Git"],
-  category: "ai",
-  github: "https://github.com/GBOYEE/xander-operator",
-  demo: null
- },
- {
-  name: "HiveSec-Ecosystem-Hub",
-  description: "Streamlit control tower for security agents — agent registry, real-time KPI dashboard, unified findings store.",
-  long_description: "A comprehensive security operations dashboard built with Streamlit. It provides a central registry for security agents, real-time KPI monitoring, and a unified store for findings from multiple scanners. Includes agent auto-discovery, status monitoring, and SQLite backend.",
-  tech: ["Streamlit", "SQLite", "Security", "Dashboard"],
-  category: "security",
-  github: "https://github.com/GBOYEE/HiveSec-Ecosystem-Hub",
-  demo: null
- },
- {
   name: "auto-sme",
-  description: "Inventory & order automation for SMEs — FastAPI backend, PostgreSQL, Twilio WhatsApp integration, PDF reports.",
-  long_description: "AutoSME is a complete backend system for small businesses. Manage inventory, process orders via WhatsApp, generate PDF sales reports, and automate scheduled tasks. Features: REST API with full CRUD, Twilio WhatsApp webhook integration, PostgreSQL with JSONB, Docker Compose for one-command deployment, and comprehensive test suite (78% coverage).",
-  tech: ["FastAPI", "PostgreSQL", "Twilio", "Docker"],
+  description: "Complete backend for SME inventory and order management. REST API, PostgreSQL, Twilio WhatsApp integration, PDF reports.",
+  long_description: "AutoSME is a production-ready FastAPI backend for small businesses. It provides full CRUD for inventory, processes orders via WhatsApp webhook, and generates PDF sales reports. Built with SQLAlchemy ORM, PostgreSQL with JSONB, comprehensive test suite (78% coverage), and Docker Compose for one-command deployment. Includes API key auth, CORS, health checks, and structured logging.",
+  tech: ["FastAPI", "PostgreSQL", "Twilio", "Docker", "pytest"],
   category: "backend",
   github: "https://github.com/GBOYEE/auto-sme",
   demo: null
  },
  {
   name: "civic-sentinel",
-  description: "AI system for analyzing public policy data — NLP pipelines, document analysis, insights API.",
-  long_description: "CivicSentinel analyzes public policy documents using NLP. Upload documents, run analysis pipelines, and get insights via API. Built with FastAPI, async processing, and modular service architecture. Includes document parsing, text extraction, and AI-powered summarization capabilities.",
-  tech: ["FastAPI", "NLP", "Async", "Document Processing"],
+  description: "AI system for analyzing public policy documents. Upload PDFs, extract entities, build knowledge graphs, get alignment reports.",
+  long_description: "CivicSentinel is a policy analysis platform that ingests civic documents (bills, regulations), applies multimodal AI (LLaVA) for image+text understanding, uses NLP (spaCy/NLTK) for entity extraction and summarization, and builds a knowledge graph of relationships. Results stored in PostgreSQL/Neo4j and accessible via REST API. Built for scalability with async processing and robust observability.",
+  tech: ["FastAPI", "LLaVA", "spaCy", "NetworkX", "PostgreSQL"],
   category: "ai",
   github: "https://github.com/GBOYEE/civic-sentinel",
   demo: null
  },
  {
+  name: "HiveSec-Ecosystem-Hub",
+  description: "Streamlit control tower for security agents. Agent registry, real-time KPI dashboard, unified findings store.",
+  long_description: "A comprehensive dashboard for coordinating security scanning agents. Auto-discovers agents from the `agents/` folder, provides real-time status monitoring, unified SQLite (or Postgres) storage for findings, and allows triggering scans and reviewing results. Production-ready with Docker Compose, health checks, and Streamlit Cloud deployment.",
+  tech: ["Streamlit", "SQLite", "Agent Framework", "Security"],
+  category: "security",
+  github: "https://github.com/GBOYEE/HiveSec-Ecosystem-Hub",
+  demo: null
+ },
+ {
+  name: "aiopsx",
+  description: "Infrastructure monitoring and auto-remediation system with human-in-the-loop approvals and risk controls.",
+  long_description: "aiopsx monitors server metrics, logs, and alerts; diagnoses issues using LLM reasoning; and applies fixes with safety guarantees. Features: Streamlit dashboard for approvals, risk-based action thresholds, full audit trail, and PostgreSQL for time-series data. Built for production with FastAPI, structured logging, and health checks.",
+  tech: ["FastAPI", "PostgreSQL", "Ollama", "Streamlit", "Observability"],
+  category: "infra",
+  github: "https://github.com/GBOYEE/aiopsx",
+  demo: null
+ },
+ {
+  name: "openclaw",
+  description: "Unified AI automation workspace gateway. Integrates agent-core, automation-engine, and trading-lab under one interface.",
+  long_description: "OpenClaw is a workspace system that combines three capabilities: agent-core (planning, memory, tool selection), automation-engine (cron, webhooks, file watchers), and trading-lab (backtesting, optimization). Controlled via a FastAPI gateway with approvals, metrics, and persistent memory. Designed as a cohesive platform for building autonomous systems.",
+  tech: ["FastAPI", "Agent Orchestration", "Scheduler", "Trading"],
+  category: "infra",
+  github: "https://github.com/GBOYEE/openclaw",
+  demo: null
+ },
+ {
+  name: "xander-operator",
+  description: "Experimental AI developer agent with GSD planning and SQLite vector memory. Research prototype for autonomous code modification.",
+  long_description: "Xander Operator explores autonomous code editing. It uses a GSD-style planner to break tasks into steps, maintains vector memory for context, and can perform file operations and Git commits. Currently a research prototype exploring safety controls (dry-run, workspace sandbox). Not yet production-ready; active development.",
+  tech: ["Python", "SQLite", "Ollama", "FastAPI"],
+  category: "ai",
+  github: "https://github.com/GBOYEE/xander-operator",
+  demo: null
+ },
+ {
   name: "web3-security-scout",
-  description: "AI-augmented smart contract scanner — static analysis, exploit generation, remediation steps (EVM/Solana).",
-  long_description: "A security scanner for Web3 smart contracts. Uses static analysis and heuristic rules to detect vulnerabilities in Solidity and other EVM languages. Generates potential exploits and provides remediation steps. CLI tool with machine-readable output for CI/CD integration.",
-  tech: ["Security", "CLI", "Heuristics", "EVM"],
+  description: "Static analyzer for Ethereum and Solana smart contracts. Detects reentrancy, overflow, and access control issues via heuristic rules.",
+  long_description: "A CLI tool for scanning smart contracts without requiring LLMs. It performs static analysis on Solidity and Rust code, detecting common vulnerability patterns (reentrancy, unchecked arithmetic, missing access control). Outputs JSON and HTML reports, suitable for CI/CD integration. Simple, fast, and deterministic.",
+  tech: ["Security", "CLI", "Static Analysis", "EVM", "Solana"],
   category: "security",
   github: "https://github.com/GBOYEE/web3-security-scout",
   demo: null
