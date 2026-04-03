@@ -10,6 +10,7 @@
 <style>
  body {
  background: radial-gradient(circle at top, #0f172a, #020617);
+ min-height: 100vh;
  }
 
  .glow {
@@ -37,10 +38,106 @@
  @keyframes blink {
  50% { border-color: transparent }
  }
+
+ @keyframes fadeIn {
+ from { opacity: 0; transform: translateY(10px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ .fade-in {
+ animation: fadeIn 0.5s ease-out forwards;
+ }
+
+ .skill-bar {
+ transition: width 1s ease-out;
+ }
+
+ .project-card {
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .project-card:hover {
+ transform: translateY(-4px) scale(1.01);
+ box-shadow: 0 10px 40px rgba(56,189,248,0.2);
+ }
+
+ .nav-link {
+ position: relative;
+ }
+
+ .nav-link::after {
+ content: '';
+ position: absolute;
+ bottom: -2px;
+ left: 0;
+ width: 0;
+ height: 1px;
+ background: #38bdf8;
+ transition: width 0.3s;
+ }
+
+ .nav-link:hover::after {
+ width: 100%;
+ }
+
+ .modal {
+ display: none;
+ position: fixed;
+ inset: 0;
+ background: rgba(0,0,0,0.8);
+ backdrop-filter: blur(8px);
+ z-index: 1000;
+ align-items: center;
+ justify-content: center;
+ }
+
+ .modal.active {
+ display: flex;
+ }
+
+ .modal-content {
+ max-height: 90vh;
+ overflow-y: auto;
+ }
+
+ /* Hide scrollbar for modal */
+ .modal-content::-webkit-scrollbar {
+ width: 8px;
+ }
+
+ .modal-content::-webkit-scrollbar-track {
+ background: rgba(255,255,255,0.05);
+ }
+
+ .modal-content::-webkit-scrollbar-thumb {
+ background: rgba(56,189,248,0.3);
+ border-radius: 4px;
+ }
+
+ .filter-btn.active {
+ background: #38bdf8;
+ color: #0f172a;
+ }
+
+ #stats-grid span {
+ display: block;
+ font-size: 1.5rem;
+ font-weight: bold;
+ color: #38bdf8;
+ }
+
 </style>
 </head>
 
 <body class="text-white font-mono">
+
+<!-- PROJECT MODAL -->
+<div id="project-modal" class="modal">
+ <div class="modal-content glass p-8 rounded-xl max-w-4xl w-full mx-4 relative">
+  <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+  <div id="modal-body"></div>
+ </div>
+</div>
 
 <div class="flex min-h-screen">
 
@@ -49,10 +146,10 @@
  <h1 class="text-xl font-bold text-cyan-400">GBOYEE_AI</h1>
 
  <nav class="mt-10 space-y-4 text-gray-400">
- <a href="#about" class="block hover:text-cyan-400">/about</a>
- <a href="#projects" class="block hover:text-cyan-400">/projects</a>
- <a href="#skills" class="block hover:text-cyan-400">/skills</a>
- <a href="#contact" class="block hover:text-cyan-400">/contact</a>
+ <a href="#about" class="block nav-link hover:text-cyan-400">/about</a>
+ <a href="#projects" class="block nav-link hover:text-cyan-400">/projects</a>
+ <a href="#skills" class="block nav-link hover:text-cyan-400">/skills</a>
+ <a href="#contact" class="block nav-link hover:text-cyan-400">/contact</a>
  </nav>
 
  <div class="mt-10 text-xs text-gray-500">
@@ -64,23 +161,19 @@
 <main class="flex-1 p-6 md:p-12 space-y-20">
 
 <!-- HERO -->
-<section>
+<section class="fade-in">
  <p class="text-cyan-400">$ initializing profile...</p>
-
  <h1 class="text-3xl md:text-5xl mt-4 typing text-cyan-300">
  Oyebanji Adegboyega
  </h1>
-
  <p class="text-gray-400 mt-6 max-w-xl">
  > AI Engineer building autonomous agents, production-grade backends, and safe LLM systems.
  </p>
-
  <div class="mt-8 flex gap-4">
  <a href="https://github.com/GBOYEE" target="_blank"
  class="px-6 py-3 glass glow rounded-lg hover:scale-105 transition">
  GitHub
  </a>
-
  <a href="#contact"
  class="px-6 py-3 border border-cyan-400 rounded-lg hover:bg-cyan-400 hover:text-black transition">
  Connect
@@ -89,186 +182,113 @@
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="glass p-6 rounded-xl">
+<section id="about" class="glass p-6 rounded-xl fade-in">
  <h2 class="text-cyan-400 mb-4">> about_me.json</h2>
-
  <p class="text-gray-400">
  I build autonomous AI systems that operate safely in production.
  My focus is on agent orchestration, backend infrastructure, and scalable automation.
  </p>
-
  <p class="text-gray-400 mt-3">
  Currently developing <strong>OpenClaw</strong> — a unified workspace for thinking, acting, and analyzing — and <strong>xander-operator</strong>, an AI developer agent with browser automation and memory.
  </p>
-
  <p class="text-gray-400 mt-3">
  Open to AI Engineering, Backend Engineering, and Automation roles.
  </p>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
- <h2 class="text-cyan-400 mb-6">> projects/</h2>
-
- <div class="grid md:grid-cols-2 gap-6">
-
- <!-- aiopsx -->
- <div class="glass p-6 rounded-xl glow hover:scale-[1.02] transition">
- <h3 class="text-cyan-300">aiopsx</h3>
- <p class="text-gray-400 mt-2">
- Autonomous infrastructure AI engineer — monitors, diagnoses, and fixes issues with safety and human oversight.
- </p>
- <div class="mt-4 text-xs text-gray-500">
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">FastAPI</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">PostgreSQL</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Ollama</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Streamlit</span>
- </div>
- <div class="mt-3">
-   <a href="https://github.com/GBOYEE/aiopsx" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
- </div>
+<section id="projects" class="fade-in">
+ <div class="flex justify-between items-center mb-6">
+  <h2 class="text-cyan-400">> projects/</h2>
+  <div class="flex gap-2 flex-wrap" id="filters">
+   <button class="filter-btn active px-3 py-1 glass rounded text-xs" data-filter="all">ALL</button>
+   <button class="filter-btn px-3 py-1 glass rounded text-xs" data-filter="ai">AI</button>
+   <button class="filter-btn px-3 py-1 glass rounded text-xs" data-filter="backend">Backend</button>
+   <button class="filter-btn px-3 py-1 glass rounded text-xs" data-filter="security">Security</button>
+   <button class="filter-btn px-3 py-1 glass rounded text-xs" data-filter="infra">Infra</button>
+  </div>
  </div>
 
- <!-- xander-hive-framework -->
- <div class="glass p-6 rounded-xl glow hover:scale-[1.02] transition">
- <h3 class="text-cyan-300">xander-hive-framework</h3>
- <p class="text-gray-400 mt-2">
- Orchestration engine for autonomous multi-agent systems — persistent sessions, shared vector memory, Redis event bus.
- </p>
- <div class="mt-4 text-xs text-gray-500">
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Python</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Redis</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Chroma</span>
+ <div class="grid md:grid-cols-2 gap-6" id="project-grid">
+  <!-- Projects will be injected by JS -->
  </div>
- <div class="mt-3">
-   <a href="https://github.com/GBOYEE/xander-hive-framework" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
- </div>
- </div>
+</section>
 
- <!-- openclaw -->
- <div class="glass p-6 rounded-xl glow hover:scale-[1.02] transition">
- <h3 class="text-cyan-300">openclaw</h3>
- <p class="text-gray-400 mt-2">
- Unified AI automation workspace — three brains (agent-core, automation-engine, trading-lab) under one gateway.
- </p>
- <div class="mt-4 text-xs text-gray-500">
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">FastAPI</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Agent Framework</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Orchestration</span>
- </div>
- <div class="mt-3">
-   <a href="https://github.com/GBOYEE/openclaw" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
- </div>
- </div>
-
- <!-- xander-operator -->
- <div class="glass p-6 rounded-xl glow hover:scale-[1.02] transition">
- <h3 class="text-cyan-300">xander-operator</h3>
- <p class="text-gray-400 mt-2">
- AI developer agent that writes code and applies changes safely — GSD planning, Playwright browse/fill, git-backed rollback.
- </p>
- <div class="mt-4 text-xs text-gray-500">
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Playwright</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Ollama</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">FastAPI</span>
- </div>
- <div class="mt-3">
-   <a href="https://github.com/GBOYEE/xander-operator" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
- </div>
- </div>
-
- <!-- HiveSec-Ecosystem-Hub -->
- <div class="glass p-6 rounded-xl glow hover:scale-[1.02] transition">
- <h3 class="text-cyan-300">HiveSec-Ecosystem-Hub</h3>
- <p class="text-gray-400 mt-2">
- Streamlit control tower for security agents — agent registry, real-time KPI dashboard, unified findings store.
- </p>
- <div class="mt-4 text-xs text-gray-500">
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Streamlit</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">SQLite</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Security</span>
- </div>
- <div class="mt-3">
-   <a href="https://github.com/GBOYEE/HiveSec-Ecosystem-Hub" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
- </div>
- </div>
-
- <!-- auto-sme -->
- <div class="glass p-6 rounded-xl glow hover:scale-[1.02] transition">
- <h3 class="text-cyan-300">auto-sme</h3>
- <p class="text-gray-400 mt-2">
- Inventory & order automation for SMEs — FastAPI backend, PostgreSQL, Twilio WhatsApp integration, PDF reports.
- </p>
- <div class="mt-4 text-xs text-gray-500">
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">FastAPI</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">PostgreSQL</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Twilio</span>
- </div>
- <div class="mt-3">
-   <a href="https://github.com/GBOYEE/auto-sme" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
- </div>
- </div>
-
- <!-- civic-sentinel -->
- <div class="glass p-6 rounded-xl glow hover:scale-[1.02] transition">
- <h3 class="text-cyan-300">civic-sentinel</h3>
- <p class="text-gray-400 mt-2">
- AI system for analyzing public policy data — NLP pipelines, document analysis, insights API.
- </p>
- <div class="mt-4 text-xs text-gray-500">
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">FastAPI</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">NLP</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Async</span>
- </div>
- <div class="mt-3">
-   <a href="https://github.com/GBOYEE/civic-sentinel" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
- </div>
- </div>
-
- <!-- web3-security-scout -->
- <div class="glass p-6 rounded-xl glow hover:scale-[1.02] transition">
- <h3 class="text-cyan-300">web3-security-scout</h3>
- <p class="text-gray-400 mt-2">
- AI-augmented smart contract scanner — static analysis, exploit generation, remediation steps (EVM/Solana).
- </p>
- <div class="mt-4 text-xs text-gray-500">
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Security</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">CLI</span>
-   <span class="inline-block px-2 py-1 border border-gray-600 rounded">Heuristics</span>
- </div>
- <div class="mt-3">
-   <a href="https://github.com/GBOYEE/web3-security-scout" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
- </div>
- </div>
-
+<!-- STATS -->
+<section id="stats" class="glass p-6 rounded-xl fade-in">
+ <h2 class="text-cyan-400 mb-4">> github_stats()</h2>
+ <div id="stats-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+  <div><span class="loading">...</span></div>
  </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="glass p-6 rounded-xl">
+<section id="skills" class="glass p-6 rounded-xl fade-in">
  <h2 class="text-cyan-400 mb-4">> skills_matrix</h2>
- <div class="grid md:grid-cols-3 gap-4 text-sm text-gray-400">
-   <div><strong>Languages:</strong> Python, JavaScript, TypeScript, Solidity</div>
-   <div><strong>AI/ML:</strong> Ollama, LangChain, Vector DB (Chroma/FAISS), LLM integration</div>
-   <div><strong>Backend:</strong> FastAPI, PostgreSQL, Redis, async/await</div>
-   <div><strong>DevOps:</strong> Docker, Docker Compose, CI/CD, pre-commit, GitHub Actions</div>
-   <div><strong>Tools:</strong> Git, Playwright, SQLAlchemy, Pydantic, pytest</div>
-   <div><strong>Testing:</strong> Unit tests, integration tests, coverage ≥78%</div>
+ <div class="space-y-4">
+  <div class="skill-item">
+   <div class="flex justify-between mb-1">
+    <span class="text-gray-300">Python</span>
+    <span class="text-cyan-400">95%</span>
+   </div>
+   <div class="h-2 bg-gray-800 rounded overflow-hidden">
+    <div class="skill-bar h-full bg-cyan-400" data-width="95%"></div>
+   </div>
+  </div>
+  <div class="skill-item">
+   <div class="flex justify-between mb-1">
+    <span class="text-gray-300">FastAPI</span>
+    <span class="text-cyan-400">90%</span>
+   </div>
+   <div class="h-2 bg-gray-800 rounded overflow-hidden">
+    <div class="skill-bar h-full bg-cyan-400" data-width="90%"></div>
+   </div>
+  </div>
+  <div class="skill-item">
+   <div class="flex justify-between mb-1">
+    <span class="text-gray-300">PostgreSQL</span>
+    <span class="text-cyan-400">85%</span>
+   </div>
+   <div class="h-2 bg-gray-800 rounded overflow-hidden">
+    <div class="skill-bar h-full bg-cyan-400" data-width="85%"></div>
+   </div>
+  </div>
+  <div class="skill-item">
+   <div class="flex justify-between mb-1">
+    <span class="text-gray-300">Docker</span>
+    <span class="text-cyan-400">88%</span>
+   </div>
+   <div class="h-2 bg-gray-800 rounded overflow-hidden">
+    <div class="skill-bar h-full bg-cyan-400" data-width="88%"></div>
+   </div>
+  </div>
+  <div class="skill-item">
+   <div class="flex justify-between mb-1">
+    <span class="text-gray-300">LLM Integration</span>
+    <span class="text-cyan-400">92%</span>
+   </div>
+   <div class="h-2 bg-gray-800 rounded overflow-hidden">
+    <div class="skill-bar h-full bg-cyan-400" data-width="92%"></div>
+   </div>
+  </div>
  </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="text-center">
+<section id="contact" class="fade-in">
  <h2 class="text-cyan-400 mb-4">> connect()</h2>
-
  <p class="text-gray-400">
  Available for AI engineering, backend development, and automation consulting.
  </p>
-
- <a href="mailto:oyebanjiadegboyega@gmail.com"
- class="inline-block mt-6 px-6 py-3 glow glass rounded-lg hover:scale-105 transition">
- Send Message
- </a>
+ <form id="contact-form" class="mt-6 max-w-md mx-auto space-y-4">
+  <input type="text" placeholder="Your Name" required class="w-full p-3 glass rounded text-white placeholder-gray-500">
+  <input type="email" placeholder="Your Email" required class="w-full p-3 glass rounded text-white placeholder-gray-500">
+  <textarea placeholder="Your Message" rows="4" required class="w-full p-3 glass rounded text-white placeholder-gray-500"></textarea>
+  <button type="submit" class="w-full py-3 bg-cyan-500 text-black font-bold rounded hover:bg-cyan-400 transition">
+   Send Message
+  </button>
+ </form>
+ <div id="form-status" class="mt-4 text-center text-sm hidden"></div>
 </section>
 
 <!-- FOOTER -->
@@ -278,6 +298,219 @@
 
 </main>
 </div>
+
+<script>
+// Project data
+const projects = [
+ {
+  name: "aiopsx",
+  description: "Autonomous infrastructure AI engineer — monitors, diagnoses, and fixes issues with safety and human oversight.",
+  long_description: "aiopsx is a production-ready AI system that monitors infrastructure, analyzes logs and metrics, diagnoses root causes, and applies fixes with safety guarantees. Features include Streamlit dashboard for human-in-the-loop approvals, risk-based action controls, and full audit trail. Built with FastAPI, PostgreSQL, and Ollama.",
+  tech: ["FastAPI", "PostgreSQL", "Ollama", "Streamlit"],
+  category: "ai",
+  github: "https://github.com/GBOYEE/aiopsx",
+  demo: null
+ },
+ {
+  name: "xander-hive-framework",
+  description: "Orchestration engine for autonomous multi-agent systems — persistent sessions, shared vector memory, Redis event bus.",
+  long_description: "A sophisticated framework for coordinating multiple AI agents. Provides persistent conversation sessions, shared vector memory for context, Redis-based event bus for communication, and RLHF-style improvement loops. Designed for building complex autonomous systems that can learn from experience.",
+  tech: ["Python", "Redis", "Chroma", "Vector DB"],
+  category: "ai",
+  github: "https://github.com/GBOYEE/xander-hive-framework",
+  demo: null
+ },
+ {
+  name: "openclaw",
+  description: "Unified AI automation workspace — three brains (agent-core, automation-engine, trading-lab) under one gateway.",
+  long_description: "OpenClaw is your all-in-one AI workspace. It combines three powerful modules: agent-core (thinking, planning, learning), automation-engine (scheduling, webhooks, file watching), and trading-lab (backtesting, optimization). All controlled through a single FastAPI gateway with approvals, metrics, and memory.",
+  tech: ["FastAPI", "Agent Framework", "Orchestration"],
+  category: "infra",
+  github: "https://github.com/GBOYEE/openclaw",
+  demo: null
+ },
+ {
+  name: "xander-operator",
+  description: "AI developer agent that writes code and applies changes safely — GSD planning, Playwright browse/fill, git-backed rollback.",
+  long_description: "Xander Operator is an AI agent that actually writes code and applies changes to your codebase. It uses GSD planning to break tasks into steps, uses Playwright for browser automation, maintains SQLite vector memory, and creates git commits for every action so you can roll back. Includes safety controls: dry-run mode, approval queues, workspace sandbox.",
+  tech: ["Playwright", "Ollama", "FastAPI", "Git"],
+  category: "ai",
+  github: "https://github.com/GBOYEE/xander-operator",
+  demo: null
+ },
+ {
+  name: "HiveSec-Ecosystem-Hub",
+  description: "Streamlit control tower for security agents — agent registry, real-time KPI dashboard, unified findings store.",
+  long_description: "A comprehensive security operations dashboard built with Streamlit. It provides a central registry for security agents, real-time KPI monitoring, and a unified store for findings from multiple scanners. Includes agent auto-discovery, status monitoring, and SQLite backend.",
+  tech: ["Streamlit", "SQLite", "Security", "Dashboard"],
+  category: "security",
+  github: "https://github.com/GBOYEE/HiveSec-Ecosystem-Hub",
+  demo: null
+ },
+ {
+  name: "auto-sme",
+  description: "Inventory & order automation for SMEs — FastAPI backend, PostgreSQL, Twilio WhatsApp integration, PDF reports.",
+  long_description: "AutoSME is a complete backend system for small businesses. Manage inventory, process orders via WhatsApp, generate PDF sales reports, and automate scheduled tasks. Features: REST API with full CRUD, Twilio WhatsApp webhook integration, PostgreSQL with JSONB, Docker Compose for one-command deployment, and comprehensive test suite (78% coverage).",
+  tech: ["FastAPI", "PostgreSQL", "Twilio", "Docker"],
+  category: "backend",
+  github: "https://github.com/GBOYEE/auto-sme",
+  demo: null
+ },
+ {
+  name: "civic-sentinel",
+  description: "AI system for analyzing public policy data — NLP pipelines, document analysis, insights API.",
+  long_description: "CivicSentinel analyzes public policy documents using NLP. Upload documents, run analysis pipelines, and get insights via API. Built with FastAPI, async processing, and modular service architecture. Includes document parsing, text extraction, and AI-powered summarization capabilities.",
+  tech: ["FastAPI", "NLP", "Async", "Document Processing"],
+  category: "ai",
+  github: "https://github.com/GBOYEE/civic-sentinel",
+  demo: null
+ },
+ {
+  name: "web3-security-scout",
+  description: "AI-augmented smart contract scanner — static analysis, exploit generation, remediation steps (EVM/Solana).",
+  long_description: "A security scanner for Web3 smart contracts. Uses static analysis and heuristic rules to detect vulnerabilities in Solidity and other EVM languages. Generates potential exploits and provides remediation steps. CLI tool with machine-readable output for CI/CD integration.",
+  tech: ["Security", "CLI", "Heuristics", "EVM"],
+  category: "security",
+  github: "https://github.com/GBOYEE/web3-security-scout",
+  demo: null
+ }
+];
+
+// Render projects
+function renderProjects(filter = 'all') {
+ const grid = document.getElementById('project-grid');
+ grid.innerHTML = '';
+ const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+ filtered.forEach((p, idx) => {
+  const card = document.createElement('div');
+  card.className = 'glass p-6 rounded-xl glow project-card fade-in';
+  card.style.animationDelay = `${idx * 0.1}s`;
+  card.innerHTML = `
+   <h3 class="text-cyan-300 text-lg">${p.name}</h3>
+   <p class="text-gray-400 mt-2 text-sm">${p.description}</p>
+   <div class="mt-4 text-xs text-gray-500 flex flex-wrap gap-1">
+    ${p.tech.map(t => `<span class="inline-block px-2 py-1 border border-gray-600 rounded">${t}</span>`).join('')}
+   </div>
+   <div class="mt-3 flex gap-2">
+    <button onclick='showDetails("${p.name}")' class="text-cyan-400 text-sm hover:underline">Details →</button>
+    <a href="${p.github}" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
+   </div>
+  `;
+  grid.appendChild(card);
+ });
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+ btn.addEventListener('click', () => {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProjects(btn.dataset.filter);
+ });
+});
+
+// Modal
+function showDetails(name) {
+ const proj = projects.find(p => p.name === name);
+ if (!proj) return;
+ const modalBody = document.getElementById('modal-body');
+ modalBody.innerHTML = `
+  <h2 class="text-cyan-300 text-2xl mb-4">${proj.name}</h2>
+  <div class="prose prose-invert max-w-none text-gray-300">
+   <p>${proj.long_description}</p>
+   <h3 class="text-cyan-400 mt-4">Tech Stack</h3>
+   <div class="flex flex-wrap gap-2 mb-4">
+    ${proj.tech.map(t => `<span class="px-3 py-1 glass rounded text-sm">${t}</span>`).join('')}
+   </div>
+   <h3 class="text-cyan-400">Links</h3>
+   <p><a href="${proj.github}" target="_blank" class="text-cyan-400 hover:underline">GitHub Repository</a></p>
+  </div>
+ `;
+ document.getElementById('project-modal').classList.add('active');
+}
+
+function closeModal() {
+ document.getElementById('project-modal').classList.remove('active');
+}
+
+// Close modal on outside click
+document.getElementById('project-modal').addEventListener('click', (e) => {
+ if (e.target === e.currentTarget) closeModal();
+});
+
+// Animate skill bars on scroll into view
+const skillSection = document.getElementById('skills');
+const observer = new IntersectionObserver((entries) => {
+ entries.forEach(entry => {
+  if (entry.isIntersecting) {
+   document.querySelectorAll('.skill-bar').forEach(bar => {
+    bar.style.width = bar.dataset.width;
+   });
+  }
+ });
+}, { threshold: 0.5 });
+observer.observe(skillSection);
+
+// GitHub stats fetch
+async function loadGitHubStats() {
+ try {
+  const response = await fetch('https://api.github.com/users/GBOYEE/repos?per_page=100');
+  const repos = await response.json();
+  const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
+  const totalForks = repos.reduce((sum, r) => sum + r.forks_count, 0);
+  const languages = {};
+  repos.forEach(r => {
+   if (r.language) languages[r.language] = (languages[r.language] || 0) + 1;
+  });
+  const topLanguage = Object.entries(languages).sort((a,b) => b[1] - a[1])[0]?.[0] || 'N/A';
+
+  document.getElementById('stats-grid').innerHTML = `
+   <div class="glass p-4 rounded text-center">
+    <div class="text-gray-400 text-xs">Repos</div>
+    <span>${repos.length}</span>
+   </div>
+   <div class="glass p-4 rounded text-center">
+    <div class="text-gray-400 text-xs">Stars</div>
+    <span>${totalStars}</span>
+   </div>
+   <div class="glass p-4 rounded text-center">
+    <div class="text-gray-400 text-xs">Forks</div>
+    <span>${totalForks}</span>
+   </div>
+   <div class="glass p-4 rounded text-center">
+    <div class="text-gray-400 text-xs">Top Lang</div>
+    <span>${topLanguage}</span>
+   </div>
+  `;
+ } catch (e) {
+  document.getElementById('stats-grid').innerHTML = '<div class="text-gray-400">Unable to load GitHub stats</div>';
+ }
+}
+
+// Contact form
+document.getElementById('contact-form').addEventListener('submit', (e) => {
+ e.preventDefault();
+ const status = document.getElementById('form-status');
+ status.textContent = 'Message sent! (This is a demo — configure email backend to actually send)';
+ status.className = 'mt-4 text-center text-sm text-cyan-400';
+ setTimeout(() => status.classList.add('hidden'), 5000);
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+ anchor.addEventListener('click', function (e) {
+  e.preventDefault();
+  const target = document.querySelector(this.getAttribute('href'));
+  if (target) {
+   target.scrollIntoView({ behavior: 'smooth' });
+  }
+ });
+});
+
+// Initialize
+renderProjects();
+loadGitHubStats();
+</script>
 
 </body>
 </html>
