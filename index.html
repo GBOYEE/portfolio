@@ -214,14 +214,6 @@
  </div>
 </section>
 
-<!-- STATS -->
-<section id="stats" class="glass p-6 rounded-xl fade-in">
- <h2 class="text-cyan-400 mb-4">> github_stats()</h2>
- <div id="stats-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-  <div><span class="loading">...</span></div>
- </div>
-</section>
-
 <!-- SKILLS -->
 <section id="skills" class="glass p-6 rounded-xl fade-in">
  <h2 class="text-cyan-400 mb-4">> skills_matrix</h2>
@@ -442,51 +434,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 observer.observe(skillSection);
 
-// GitHub stats fetch
-async function loadGitHubStats() {
- try {
-  const response = await fetch('https://api.github.com/users/GBOYEE/repos?per_page=100');
-  const repos = await response.json();
-  const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
-  const totalForks = repos.reduce((sum, r) => sum + r.forks_count, 0);
-  const languages = {};
-  repos.forEach(r => {
-   if (r.language) languages[r.language] = (languages[r.language] || 0) + 1;
-  });
-  const topLanguage = Object.entries(languages).sort((a,b) => b[1] - a[1])[0]?.[0] || 'N/A';
-
-  document.getElementById('stats-grid').innerHTML = `
-   <div class="glass p-4 rounded text-center">
-    <div class="text-gray-400 text-xs">Repos</div>
-    <span>${repos.length}</span>
-   </div>
-   <div class="glass p-4 rounded text-center">
-    <div class="text-gray-400 text-xs">Stars</div>
-    <span>${totalStars}</span>
-   </div>
-   <div class="glass p-4 rounded text-center">
-    <div class="text-gray-400 text-xs">Forks</div>
-    <span>${totalForks}</span>
-   </div>
-   <div class="glass p-4 rounded text-center">
-    <div class="text-gray-400 text-xs">Top Lang</div>
-    <span>${topLanguage}</span>
-   </div>
-  `;
- } catch (e) {
-  document.getElementById('stats-grid').innerHTML = '<div class="text-gray-400">Unable to load GitHub stats</div>';
- }
-}
-
-// Contact form
-document.getElementById('contact-form').addEventListener('submit', (e) => {
- e.preventDefault();
- const status = document.getElementById('form-status');
- status.textContent = 'Message sent! (This is a demo — configure email backend to actually send)';
- status.className = 'mt-4 text-center text-sm text-cyan-400';
- setTimeout(() => status.classList.add('hidden'), 5000);
-});
-
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
  anchor.addEventListener('click', function (e) {
@@ -500,7 +447,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Initialize
 renderProjects();
-loadGitHubStats();
 </script>
 
 </body>
