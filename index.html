@@ -1,453 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>GBOYEE | AI Engineer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<style>
- body {
- background: radial-gradient(circle at top, #0f172a, #020617);
- min-height: 100vh;
- }
-
- .glow {
- box-shadow: 0 0 20px rgba(56,189,248,0.3);
- }
-
- .glass {
- background: rgba(255,255,255,0.03);
- backdrop-filter: blur(12px);
- border: 1px solid rgba(255,255,255,0.08);
- }
-
- .typing {
- border-right: 2px solid #38bdf8;
- white-space: nowrap;
- overflow: hidden;
- animation: typing 3s steps(30), blink .7s infinite;
- }
-
- @keyframes typing {
- from { width: 0 }
- to { width: 100% }
- }
-
- @keyframes blink {
- 50% { border-color: transparent }
- }
-
- @keyframes fadeIn {
- from { opacity: 0; transform: translateY(10px); }
- to { opacity: 1; transform: translateY(0); }
- }
-
- .fade-in {
- animation: fadeIn 0.5s ease-out forwards;
- }
-
- .skill-bar {
- transition: width 1s ease-out;
- }
-
- .project-card {
- transition: transform 0.3s ease, box-shadow 0.3s ease;
- }
-
- .project-card:hover {
- transform: translateY(-4px) scale(1.01);
- box-shadow: 0 10px 40px rgba(56,189,248,0.2);
- }
-
- .nav-link {
- position: relative;
- }
-
- .nav-link::after {
- content: '';
- position: absolute;
- bottom: -2px;
- left: 0;
- width: 0;
- height: 1px;
- background: #38bdf8;
- transition: width 0.3s;
- }
-
- .nav-link:hover::after {
- width: 100%;
- }
-
- .modal {
- display: none;
- position: fixed;
- inset: 0;
- background: rgba(0,0,0,0.8);
- backdrop-filter: blur(8px);
- z-index: 1000;
- align-items: center;
- justify-content: center;
- }
-
- .modal.active {
- display: flex;
- }
-
- .modal-content {
- max-height: 90vh;
- overflow-y: auto;
- }
-
- /* Hide scrollbar for modal */
- .modal-content::-webkit-scrollbar {
- width: 8px;
- }
-
- .modal-content::-webkit-scrollbar-track {
- background: rgba(255,255,255,0.05);
- }
-
- .modal-content::-webkit-scrollbar-thumb {
- background: rgba(56,189,248,0.3);
- border-radius: 4px;
- }
-
- .filter-btn.active {
- background: #38bdf8;
- color: #0f172a;
- }
-
- #stats-grid span {
- display: block;
- font-size: 1.5rem;
- font-weight: bold;
- color: #38bdf8;
- }
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyebanji Adegboyega — AI Safety & Infrastructure Engineer</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; background: #f9f9f9; color: #222; }
+        h1 { margin-bottom: 0.2em; }
+        .subtitle { color: #555; margin-top: 0; margin-bottom: 2em; }
+        .section { margin-bottom: 2em; }
+        .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+        .project { border: 1px solid #e0e0e0; border-radius: 8px; padding: 1em; background: white; }
+        .project h3 { margin-top: 0; }
+        .project p { font-size: 0.95em; color: #444; }
+        a { text-decoration: none; color: #0066cc; }
+        a:hover { text-decoration: underline; }
+        .badges { display: flex; gap: 0.5em; flex-wrap: wrap; margin-top: 0.5em; }
+        .badge { font-size: 0.85em; padding: 0.2em 0.5em; background: #f4f4f4; border-radius: 4px; }
+        footer { margin-top: 3em; border-top: 1px solid #e0e0e0; padding-top: 1em; font-size: 0.9em; color: #777; }
+    </style>
 </head>
+<body>
+    <header>
+        <h1>Oyebanji Adegboyega</h1>
+        <p class="subtitle">AI Safety & Multi-Agent Systems Engineer</p>
+        <p>
+            Building auditable, safe autonomous agents for infrastructure, security, and ethics.
+            <br>
+            🇳🇬 Nigeria &nbsp;|&nbsp; ✉️ <a href="mailto:oyebanjiadegboyega@gmail.com">oyebanjiadegboyega@gmail.com</a>
+            &nbsp;|&nbsp; 🐦 <a href="https://x.com/Gboyee_0">@Gboyee_0</a>
+        </p>
+    </header>
 
-<body class="text-white font-mono">
+    <section class="section">
+        <h2>Mission</h2>
+        <p>
+            I create systems where AI acts with <strong>full auditability</strong>, <strong>human‑in‑the‑loop safety</strong>, and <strong>automatic rollback</strong>.
+            My work sits at the intersection of AI alignment, infrastructure automation, and security tooling.
+        </p>
+    </section>
 
-<!-- PROJECT MODAL -->
-<div id="project-modal" class="modal">
- <div class="modal-content glass p-8 rounded-xl max-w-4xl w-full mx-4 relative">
-  <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
-  <div id="modal-body"></div>
- </div>
-</div>
+    <section class="section">
+        <h2>Featured Projects</h2>
+        <div class="projects">
+            <div class="project">
+                <h3><a href="https://github.com/GBOYEE/aiopsx">aiopsx</a></h3>
+                <p>
+                    Production‑grade AIOps with LLM diagnosis, policy gates, and rollback. Includes Streamlit dashboard and CI.
+                </p>
+                <div class="badges">
+                    <span class="badge">FastAPI</span>
+                    <span class="badge">Streamlit</span>
+                    <span class="badge">PostgreSQL</span>
+                    <span class="badge">Docker</span>
+                </div>
+            </div>
+            <div class="project">
+                <h3><a href="https://github.com/GBOYEE/xander-hive-framework">XANDER Hive</a></h3>
+                <p>
+                    Multi‑agent orchestration with shared vector memory, Redis event bus, RLHF‑style loops, and self‑repair.
+                </p>
+                <div class="badges">
+                    <span class="badge">Multi‑Agent</span>
+                    <span class="badge">FAISS</span>
+                    <span class="badge">Redis</span>
+                    <span class="badge">Streamlit</span>
+                </div>
+            </div>
+            <div class="project">
+                <h3><a href="https://github.com/GBOYEE/HiveSec-Ecosystem-Hub">HiveSec Ecosystem</a></h3>
+                <p>
+                    Streamlit dashboard coordinating security agents for continuous monitoring, vulnerability scanning, and alerting.
+                </p>
+                <div class="badges">
+                    <span class="badge">Security</span>
+                    <span class="badge">Streamlit</span>
+                    <span class="badge">Agents</span>
+                </div>
+            </div>
+            <div class="project">
+                <h3><a href="https://github.com/GBOYEE/web3-security-scout">web3‑security‑scout</a></h3>
+                <p>
+                    AI‑augmented smart contract vulnerability scanner for Solidity & Rust.
+                </p>
+                <div class="badges">
+                    <span class="badge">Web3</span>
+                    <span class="badge">Security</span>
+                    <span class="badge">LLM</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="flex min-h-screen">
+    <section class="section">
+        <h2>Core Values</h2>
+        <ul>
+            <li><strong>Safety first</strong> — human‑in‑the‑loop, automatic rollback, permission gates.</li>
+            <li><strong>Auditability</strong> — immutable logs, full traceability, reproducible decisions.</li>
+            <li><strong>Open source</strong> — MIT‑licensed, CI‑tested, developer‑friendly setup.</li>
+            <li><strong>Real world ready</strong> — Docker Compose, tests, pre‑commit hooks, dashboards.</li>
+        </ul>
+    </section>
 
-<!-- SIDEBAR -->
-<aside class="w-64 glass p-6 hidden md:block">
- <h1 class="text-xl font-bold text-cyan-400">GBOYEE_AI</h1>
+    <section class="section">
+        <h2>Open to Roles</h2>
+        <p>
+            I’m actively looking for AI Engineering, MLOps, AI Safety, or Security Engineering positions (Nigeria + Remote).
+            If you value rigorous, safe, and observable AI systems, let’s talk.
+        </p>
+    </section>
 
- <nav class="mt-10 space-y-4 text-gray-400">
- <a href="#about" class="block nav-link hover:text-cyan-400">/about</a>
- <a href="#projects" class="block nav-link hover:text-cyan-400">/projects</a>
- <a href="#skills" class="block nav-link hover:text-cyan-400">/skills</a>
- <a href="#contact" class="block nav-link hover:text-cyan-400">/contact</a>
- </nav>
-
- <div class="mt-10 text-xs text-gray-500">
- status: online ● Lagos
- </div>
-</aside>
-
-<!-- MAIN -->
-<main class="flex-1 p-6 md:p-12 space-y-20">
-
-<!-- HERO -->
-<section class="fade-in">
- <p class="text-cyan-400">$ initializing profile...</p>
- <h1 class="text-3xl md:text-5xl mt-4 typing text-cyan-300">
- Oyebanji Adegboyega
- </h1>
- <p class="text-gray-400 mt-6 max-w-xl">
- > AI Engineer building autonomous agents, production-grade backends, and safe LLM systems.
- </p>
- <div class="mt-8 flex gap-4">
- <a href="https://github.com/GBOYEE" target="_blank"
- class="px-6 py-3 glass glow rounded-lg hover:scale-105 transition">
- GitHub
- </a>
- <a href="#contact"
- class="px-6 py-3 border border-cyan-400 rounded-lg hover:bg-cyan-400 hover:text-black transition">
- Connect
- </a>
- </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="glass p-6 rounded-xl fade-in">
- <h2 class="text-cyan-400 mb-4">> about_me.json</h2>
- <p class="text-gray-400">
- I build autonomous AI systems that operate safely in production.
- My focus is on agent orchestration, backend infrastructure, and scalable automation.
- </p>
- <p class="text-gray-400 mt-3">
- Currently developing <strong>OpenClaw</strong> — a unified workspace for thinking, acting, and analyzing — and <strong>xander-operator</strong>, an AI developer agent with browser automation and memory.
- </p>
- <p class="text-gray-400 mt-3">
- Open to AI Engineering, Backend Engineering, and Automation roles.
- </p>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="fade-in">
- <div class="flex justify-between items-center mb-6">
-  <h2 class="text-cyan-400">> projects/</h2>
-  <div class="flex gap-2 flex-wrap" id="filters">
-   <button class="filter-btn active px-3 py-1 glass rounded text-xs" data-filter="all">ALL</button>
-   <button class="filter-btn px-3 py-1 glass rounded text-xs" data-filter="ai">AI</button>
-   <button class="filter-btn px-3 py-1 glass rounded text-xs" data-filter="backend">Backend</button>
-   <button class="filter-btn px-3 py-1 glass rounded text-xs" data-filter="security">Security</button>
-   <button class="filter-btn px-3 py-1 glass rounded text-xs" data-filter="infra">Infra</button>
-  </div>
- </div>
-
- <div class="grid md:grid-cols-2 gap-6" id="project-grid">
-  <!-- Projects will be injected by JS -->
- </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="glass p-6 rounded-xl fade-in">
- <h2 class="text-cyan-400 mb-4">> skills_matrix</h2>
- <div class="space-y-4">
-  <div class="skill-item">
-   <div class="flex justify-between mb-1">
-    <span class="text-gray-300">Python</span>
-    <span class="text-cyan-400">95%</span>
-   </div>
-   <div class="h-2 bg-gray-800 rounded overflow-hidden">
-    <div class="skill-bar h-full bg-cyan-400" data-width="95%"></div>
-   </div>
-  </div>
-  <div class="skill-item">
-   <div class="flex justify-between mb-1">
-    <span class="text-gray-300">FastAPI</span>
-    <span class="text-cyan-400">90%</span>
-   </div>
-   <div class="h-2 bg-gray-800 rounded overflow-hidden">
-    <div class="skill-bar h-full bg-cyan-400" data-width="90%"></div>
-   </div>
-  </div>
-  <div class="skill-item">
-   <div class="flex justify-between mb-1">
-    <span class="text-gray-300">PostgreSQL</span>
-    <span class="text-cyan-400">85%</span>
-   </div>
-   <div class="h-2 bg-gray-800 rounded overflow-hidden">
-    <div class="skill-bar h-full bg-cyan-400" data-width="85%"></div>
-   </div>
-  </div>
-  <div class="skill-item">
-   <div class="flex justify-between mb-1">
-    <span class="text-gray-300">Docker</span>
-    <span class="text-cyan-400">88%</span>
-   </div>
-   <div class="h-2 bg-gray-800 rounded overflow-hidden">
-    <div class="skill-bar h-full bg-cyan-400" data-width="88%"></div>
-   </div>
-  </div>
-  <div class="skill-item">
-   <div class="flex justify-between mb-1">
-    <span class="text-gray-300">LLM Integration</span>
-    <span class="text-cyan-400">92%</span>
-   </div>
-   <div class="h-2 bg-gray-800 rounded overflow-hidden">
-    <div class="skill-bar h-full bg-cyan-400" data-width="92%"></div>
-   </div>
-  </div>
- </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="fade-in">
- <h2 class="text-cyan-400 mb-4">> connect()</h2>
- <p class="text-gray-400">
- Available for AI engineering, backend development, and automation consulting.
- </p>
- <form id="contact-form" class="mt-6 max-w-md mx-auto space-y-4">
-  <input type="text" placeholder="Your Name" required class="w-full p-3 glass rounded text-white placeholder-gray-500">
-  <input type="email" placeholder="Your Email" required class="w-full p-3 glass rounded text-white placeholder-gray-500">
-  <textarea placeholder="Your Message" rows="4" required class="w-full p-3 glass rounded text-white placeholder-gray-500"></textarea>
-  <button type="submit" class="w-full py-3 bg-cyan-500 text-black font-bold rounded hover:bg-cyan-400 transition">
-   Send Message
-  </button>
- </form>
- <div id="form-status" class="mt-4 text-center text-sm hidden"></div>
-</section>
-
-<!-- FOOTER -->
-<footer class="text-center text-gray-600 text-xs mt-12">
- Built with GSD discipline • All systems production-ready
-</footer>
-
-</main>
-</div>
-
-<script>
-// Project data
-const projects = [
- {
-  name: "auto-sme",
-  description: "Complete backend for SME inventory and order management. REST API, PostgreSQL, Twilio WhatsApp integration, PDF reports.",
-  long_description: "AutoSME is a production-ready FastAPI backend for small businesses. It provides full CRUD for inventory, processes orders via WhatsApp webhook, and generates PDF sales reports. Built with SQLAlchemy ORM, PostgreSQL with JSONB, comprehensive test suite (78% coverage), and Docker Compose for one-command deployment. Includes API key auth, CORS, health checks, and structured logging.",
-  tech: ["FastAPI", "PostgreSQL", "Twilio", "Docker", "pytest"],
-  category: "backend",
-  github: "https://github.com/GBOYEE/auto-sme",
-  demo: null
- },
- {
-  name: "civic-sentinel",
-  description: "AI system for analyzing public policy documents. Upload PDFs, extract entities, build knowledge graphs, get alignment reports.",
-  long_description: "CivicSentinel is a policy analysis platform that ingests civic documents (bills, regulations), applies multimodal AI (LLaVA) for image+text understanding, uses NLP (spaCy/NLTK) for entity extraction and summarization, and builds a knowledge graph of relationships. Results stored in PostgreSQL/Neo4j and accessible via REST API. Built for scalability with async processing and robust observability.",
-  tech: ["FastAPI", "LLaVA", "spaCy", "NetworkX", "PostgreSQL"],
-  category: "ai",
-  github: "https://github.com/GBOYEE/civic-sentinel",
-  demo: null
- },
- {
-  name: "HiveSec-Ecosystem-Hub",
-  description: "Streamlit control tower for security agents. Agent registry, real-time KPI dashboard, unified findings store.",
-  long_description: "A comprehensive dashboard for coordinating security scanning agents. Auto-discovers agents from the `agents/` folder, provides real-time status monitoring, unified SQLite (or Postgres) storage for findings, and allows triggering scans and reviewing results. Production-ready with Docker Compose, health checks, and Streamlit Cloud deployment.",
-  tech: ["Streamlit", "SQLite", "Agent Framework", "Security"],
-  category: "security",
-  github: "https://github.com/GBOYEE/HiveSec-Ecosystem-Hub",
-  demo: null
- },
- {
-  name: "aiopsx",
-  description: "Infrastructure monitoring and auto-remediation system with human-in-the-loop approvals and risk controls.",
-  long_description: "aiopsx monitors server metrics, logs, and alerts; diagnoses issues using LLM reasoning; and applies fixes with safety guarantees. Features: Streamlit dashboard for approvals, risk-based action thresholds, full audit trail, and PostgreSQL for time-series data. Built for production with FastAPI, structured logging, and health checks.",
-  tech: ["FastAPI", "PostgreSQL", "Ollama", "Streamlit", "Observability"],
-  category: "infra",
-  github: "https://github.com/GBOYEE/aiopsx",
-  demo: null
- },
- {
-  name: "openclaw",
-  description: "Unified AI automation workspace gateway. Integrates agent-core, automation-engine, and trading-lab under one interface.",
-  long_description: "OpenClaw is a workspace system that combines three capabilities: agent-core (planning, memory, tool selection), automation-engine (cron, webhooks, file watchers), and trading-lab (backtesting, optimization). Controlled via a FastAPI gateway with approvals, metrics, and persistent memory. Designed as a cohesive platform for building autonomous systems.",
-  tech: ["FastAPI", "Agent Orchestration", "Scheduler", "Trading"],
-  category: "infra",
-  github: "https://github.com/GBOYEE/openclaw",
-  demo: null
- },
- {
-  name: "xander-operator",
-  description: "Experimental AI developer agent with GSD planning and SQLite vector memory. Research prototype for autonomous code modification.",
-  long_description: "Xander Operator explores autonomous code editing. It uses a GSD-style planner to break tasks into steps, maintains vector memory for context, and can perform file operations and Git commits. Currently a research prototype exploring safety controls (dry-run, workspace sandbox). Not yet production-ready; active development.",
-  tech: ["Python", "SQLite", "Ollama", "FastAPI"],
-  category: "ai",
-  github: "https://github.com/GBOYEE/xander-operator",
-  demo: null
- },
- {
-  name: "web3-security-scout",
-  description: "Static analyzer for Ethereum and Solana smart contracts. Detects reentrancy, overflow, and access control issues via heuristic rules.",
-  long_description: "A CLI tool for scanning smart contracts without requiring LLMs. It performs static analysis on Solidity and Rust code, detecting common vulnerability patterns (reentrancy, unchecked arithmetic, missing access control). Outputs JSON and HTML reports, suitable for CI/CD integration. Simple, fast, and deterministic.",
-  tech: ["Security", "CLI", "Static Analysis", "EVM", "Solana"],
-  category: "security",
-  github: "https://github.com/GBOYEE/web3-security-scout",
-  demo: null
- }
-];
-
-// Render projects
-function renderProjects(filter = 'all') {
- const grid = document.getElementById('project-grid');
- grid.innerHTML = '';
- const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
- filtered.forEach((p, idx) => {
-  const card = document.createElement('div');
-  card.className = 'glass p-6 rounded-xl glow project-card fade-in';
-  card.style.animationDelay = `${idx * 0.1}s`;
-  card.innerHTML = `
-   <h3 class="text-cyan-300 text-lg">${p.name}</h3>
-   <p class="text-gray-400 mt-2 text-sm">${p.description}</p>
-   <div class="mt-4 text-xs text-gray-500 flex flex-wrap gap-1">
-    ${p.tech.map(t => `<span class="inline-block px-2 py-1 border border-gray-600 rounded">${t}</span>`).join('')}
-   </div>
-   <div class="mt-3 flex gap-2">
-    <button onclick='showDetails("${p.name}")' class="text-cyan-400 text-sm hover:underline">Details →</button>
-    <a href="${p.github}" target="_blank" class="text-cyan-400 text-sm hover:underline">View →</a>
-   </div>
-  `;
-  grid.appendChild(card);
- });
-}
-
-// Filter buttons
-document.querySelectorAll('.filter-btn').forEach(btn => {
- btn.addEventListener('click', () => {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderProjects(btn.dataset.filter);
- });
-});
-
-// Modal
-function showDetails(name) {
- const proj = projects.find(p => p.name === name);
- if (!proj) return;
- const modalBody = document.getElementById('modal-body');
- modalBody.innerHTML = `
-  <h2 class="text-cyan-300 text-2xl mb-4">${proj.name}</h2>
-  <div class="prose prose-invert max-w-none text-gray-300">
-   <p>${proj.long_description}</p>
-   <h3 class="text-cyan-400 mt-4">Tech Stack</h3>
-   <div class="flex flex-wrap gap-2 mb-4">
-    ${proj.tech.map(t => `<span class="px-3 py-1 glass rounded text-sm">${t}</span>`).join('')}
-   </div>
-   <h3 class="text-cyan-400">Links</h3>
-   <p><a href="${proj.github}" target="_blank" class="text-cyan-400 hover:underline">GitHub Repository</a></p>
-  </div>
- `;
- document.getElementById('project-modal').classList.add('active');
-}
-
-function closeModal() {
- document.getElementById('project-modal').classList.remove('active');
-}
-
-// Close modal on outside click
-document.getElementById('project-modal').addEventListener('click', (e) => {
- if (e.target === e.currentTarget) closeModal();
-});
-
-// Animate skill bars on scroll into view
-const skillSection = document.getElementById('skills');
-const observer = new IntersectionObserver((entries) => {
- entries.forEach(entry => {
-  if (entry.isIntersecting) {
-   document.querySelectorAll('.skill-bar').forEach(bar => {
-    bar.style.width = bar.dataset.width;
-   });
-  }
- });
-}, { threshold: 0.5 });
-observer.observe(skillSection);
-
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
- anchor.addEventListener('click', function (e) {
-  e.preventDefault();
-  const target = document.querySelector(this.getAttribute('href'));
-  if (target) {
-   target.scrollIntoView({ behavior: 'smooth' });
-  }
- });
-});
-
-// Initialize
-renderProjects();
-</script>
-
+    <footer>
+        <p>© 2026 Oyebanji Adegboyega. Content licensed MIT unless noted.</p>
+    </footer>
 </body>
 </html>
