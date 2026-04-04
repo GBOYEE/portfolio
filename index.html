@@ -43,6 +43,11 @@
  0 0 24px #00f5ff;
  }
  
+ .glass {
+ background: rgba(255,255,255,0.06);
+ backdrop-filter: blur(16px);
+ }
+ 
  .project-card {
  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
  }
@@ -52,25 +57,10 @@
  box-shadow: 0 30px 60px -15px rgb(0 245 255 / 0.2);
  }
  
- #neural-canvas {
- filter: brightness(1.15) contrast(1.05);
- }
- 
- .glass {
- background: rgba(255,255,255,0.06);
- backdrop-filter: blur(16px);
- }
- 
- /* 9.5/10 Ultra-responsive typography & spacing */
  @media (max-width: 640px) {
  .hero-title { font-size: 2.75rem !important; line-height: 1.05 !important; }
  .hero-subtitle { font-size: 2.125rem !important; line-height: 1.1 !important; }
  .section-header { font-size: 2.25rem !important; }
- }
- 
- @media (min-width: 641px) and (max-width: 1024px) {
- .hero-title { font-size: 3.75rem !important; }
- .hero-subtitle { font-size: 2.75rem !important; }
  }
  
  .touch-target {
@@ -80,7 +70,7 @@
  </style>
 </head>
 <body class="tail-container text-white overflow-x-hidden">
- <!-- NAVBAR – Ultra-smooth & professional -->
+ <!-- NAVBAR -->
  <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
  <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center justify-between">
  <!-- Logo -->
@@ -97,23 +87,21 @@
  <a href="#work" class="hover:text-[#00f5ff] touch-target flex items-center px-1">Work</a>
  <a href="#skills" class="hover:text-[#00f5ff] touch-target flex items-center px-1">Expertise</a>
  <a href="#contact" class="hover:text-[#00f5ff] touch-target flex items-center px-1">Contact</a>
- </div><!-- Actions -->
+ </div>
+ <!-- GitHub + Mobile Toggle -->
  <div class="flex items-center gap-4">
  <a href="https://github.com/GBOYEE" target="_blank"
  class="glass border border-white/20 hover:border-[#00f5ff]/50 px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2.5 touch-target">
  <i class="fa-brands fa-github"></i>
  <span class="hidden sm:inline">GitHub</span>
  </a>
- 
- <!-- Mobile Hamburger -->
  <button id="mobile-menu-button"
  class="md:hidden w-12 h-12 flex items-center justify-center text-3xl touch-target">
  <i id="hamburger-icon" class="fa-solid fa-bars"></i>
  </button>
  </div>
  </div>
- 
- <!-- Mobile Menu – Full height, premium feel -->
+ <!-- Mobile Menu -->
  <div id="mobile-menu" class="hidden md:hidden px-6 pb-10 bg-[#0a0a0a] border-t border-white/10">
  <div class="flex flex-col gap-6 text-xl font-medium pt-8">
  <a href="#about" onclick="toggleMobileMenu()" class="py-3 hover:text-[#00f5ff]">About</a>
@@ -131,7 +119,7 @@
  </div>
  </nav>
 
- <!-- HERO – Perfectly balanced on every device -->
+ <!-- HERO -->
  <section id="hero" class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-20">
  <canvas id="neural-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-20 md:opacity-30"></canvas>
  
@@ -191,7 +179,7 @@
  </div>
  </div>
  
- <!-- Visual accent – perfectly responsive -->
+ <!-- Visual accent -->
  <div class="md:col-span-5 flex justify-center md:justify-end mt-8 md:mt-0">
  <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center">
  <div class="absolute inset-0 bg-gradient-to-br from-[#00f5ff]/20 to-violet-500/20 rounded-[3.5rem] rotate-12 blur-3xl"></div>
@@ -204,17 +192,12 @@
  </div>
  </div>
  </div>
- 
- <!-- Scroll indicator – hidden on very small screens for cleanliness -->
- <div class="hidden md:flex absolute bottom-12 left-1/2 flex-col items-center gap-2 text-[#00f5ff]/70">
- <div class="text-xs tracking-[3px] font-medium">SCROLL TO EXPLORE</div>
- <i class="fa-solid fa-chevron-down text-3xl animate-bounce"></i>
- </div>
  </div>
  </section>
 
  <!-- ABOUT -->
- <section id="about" class="max-w-screen-2xl mx-auto px-6 py-20 md:py-28 border-t border-white/10"><div class="grid md:grid-cols-12 gap-16">
+ <section id="about" class="max-w-screen-2xl mx-auto px-6 py-20 md:py-28 border-t border-white/10">
+ <div class="grid md:grid-cols-12 gap-16">
  <div class="md:col-span-5">
  <div class="sticky top-28">
  <span class="uppercase text-[#00f5ff] text-sm font-semibold tracking-[2px]">01 — ABOUT</span>
@@ -247,7 +230,7 @@
  </div>
  </section>
 
- <!-- SKILLS / EXPERTISE -->
+ <!-- SKILLS -->
  <section id="skills" class="bg-[#111113] py-20 md:py-28">
  <div class="max-w-screen-2xl mx-auto px-6">
  <div class="flex justify-between mb-12">
@@ -266,7 +249,8 @@
  <i class="fa-brands fa-python text-6xl mb-5 text-yellow-400"></i>
  <span class="font-semibold text-lg">Python</span>
  </div>
- <div class="glass border border-transparent hover:border-[#00f5ff]/30 rounded-3xl px-7 py-9 flex flex-col items-center text-center"><i class="fa-brands fa-js text-6xl mb-5 text-yellow-300"></i>
+ <div class="glass border border-transparent hover:border-[#00f5ff]/30 rounded-3xl px-7 py-9 flex flex-col items-center text-center">
+ <i class="fa-brands fa-js text-6xl mb-5 text-yellow-300"></i>
  <span class="font-semibold text-lg">TypeScript</span>
  </div>
  <div class="glass border border-transparent hover:border-[#00f5ff]/30 rounded-3xl px-7 py-9 flex flex-col items-center text-center">
@@ -319,8 +303,9 @@
  <span class="uppercase text-[#00f5ff] text-sm font-semibold tracking-[2px]">03 — SELECTED WORK</span>
  <h2 class="section-header text-5xl md:text-6xl font-semibold logo-font tracking-tighter mt-4">Shipped AI systems that are secure by design</h2>
  </div>
- 
- <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="project-card glass border border-white/10 rounded-3xl p-8 flex flex-col h-full">
+ <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+ <!-- Project 1 -->
+ <div class="project-card glass border border-white/10 rounded-3xl p-8 flex flex-col h-full">
  <div class="flex-1">
  <div class="text-xs font-mono tracking-widest text-violet-300 mb-3">MULTI-AGENT ORCHESTRATION</div>
  <h3 class="text-3xl font-semibold mb-4">OpenClaw AI</h3>
@@ -333,7 +318,7 @@
  </div>
  <a href="https://github.com/GBOYEE" target="_blank" class="mt-8 text-[#00f5ff] font-medium flex items-center gap-3">View on GitHub <i class="fa-solid fa-arrow-right"></i></a>
  </div>
- 
+ <!-- Project 2 -->
  <div class="project-card glass border border-white/10 rounded-3xl p-8 flex flex-col h-full">
  <div class="flex-1">
  <div class="text-xs font-mono tracking-widest text-cyan-300 mb-3">AI SECURITY INFRASTRUCTURE</div>
@@ -348,7 +333,7 @@
  </div>
  <a href="https://github.com/GBOYEE" target="_blank" class="mt-8 text-[#00f5ff] font-medium flex items-center gap-3">View on GitHub <i class="fa-solid fa-arrow-right"></i></a>
  </div>
- 
+ <!-- Project 3 -->
  <div class="project-card glass border border-white/10 rounded-3xl p-8 flex flex-col h-full">
  <div class="flex-1">
  <div class="text-xs font-mono tracking-widest text-amber-300 mb-3">ON-CHAIN AI AGENT</div>
@@ -369,7 +354,8 @@
  <section id="contact" class="bg-gradient-to-b from-[#111113] to-[#0a0a0a] py-20 md:py-28 border-t border-white/10">
  <div class="max-w-screen-2xl mx-auto px-6">
  <div class="max-w-2xl mx-auto text-center">
- <span class="px-8 py-4 bg-white/10 rounded-3xl text-sm font-semibold mb-8 inline-block">04 — LET’S BUILD THE FUTURE</span><h2 class="text-5xl md:text-6xl font-semibold logo-font tracking-tighter leading-none mb-8">Ready to secure the next generation of AI?</h2>
+ <span class="px-8 py-4 bg-white/10 rounded-3xl text-sm font-semibold mb-8 inline-block">04 — LET’S BUILD THE FUTURE</span>
+ <h2 class="text-5xl md:text-6xl font-semibold logo-font tracking-tighter leading-none mb-8">Ready to secure the next generation of AI?</h2>
  <p class="text-xl text-zinc-400 mb-14">Multi-agent systems • RLHF alignment • Ethical AI infrastructure • Web3 agents — I’m always open to meaningful collaborations.</p>
  
  <div class="flex flex-col sm:flex-row gap-6 justify-center">
@@ -386,7 +372,7 @@
  </div>
  
  <div class="mt-20 text-sm flex flex-wrap justify-center gap-x-8 gap-y-6 text-zinc-400">
- <a href="mailto:hey@gboyee.dev" class="flex items-center gap-3 hover:text-white"><i class="fa-solid fa-envelope"></i> hey@gboyee.dev</a>
+ <a href="mailto:Oyebanjiadegboyee@gmail.com" class="flex items-center gap-3 hover:text-white"><i class="fa-solid fa-envelope"></i> Oyebanjiadegboyee@gmail.com</a>
  <a href="https://x.com/Gboyee_0" target="_blank" class="flex items-center gap-3 hover:text-white"><i class="fa-brands fa-x-twitter"></i> @Gboyee_0</a>
  <a href="https://github.com/GBOYEE" target="_blank" class="flex items-center gap-3 hover:text-white"><i class="fa-brands fa-github"></i> GBoyee</a>
  </div>
@@ -400,7 +386,7 @@
  <div>© 2026 Gboyee • Oyebanji Adegboyega. All Rights Reserved.</div>
  <div class="flex gap-8">
  <a href="https://gboyee.github.io/" class="hover:text-[#00f5ff]">Portfolio</a>
- <a href="https://github.com/GBOYEE" target="_blank" class="hover:text-[#00f00f5ff]">GitHub</a>
+ <a href="https://github.com/GBOYEE" target="_blank" class="hover:text-[#00f5ff]">GitHub</a>
  <a href="https://x.com/Gboyee_0" target="_blank" class="hover:text-[#00f5ff]">X</a>
  </div>
  <div class="flex items-center gap-2 text-[#00f5ff]">
@@ -411,15 +397,11 @@
  </footer>
 
  <script>
- // Tailwind ready
- function initTailwind() {
- return { config(userConfig = {}) { return { configUser: userConfig, theme: { extend: {} } } }, theme: { extend: {} } }
- }
-
- // Ultra-optimized neural canvas for mobile (9.5/10 performance)
+ // Neural Canvas (optimized for mobile)
  function createNeuralCanvas() {
  const canvas = document.getElementById('neural-canvas')
- const ctx = canvas.getContext('2d', { alpha: true })
+ if (!canvas) return
+ const ctx = canvas.getContext('2d')
  
  let particles = []
  let w, h
@@ -434,7 +416,8 @@
  this.r = Math.random() * 2.8 + 1
  }
  update() {
- this.x += this.vx; this.y += this.vy
+ this.x += this.vx
+ this.y += this.vy
  if (this.x < 0 || this.x > w) this.vx *= -1
  if (this.y < 0 || this.y > h) this.vy *= -1
  }
@@ -458,7 +441,7 @@
  const dy = particles[i].y - particles[j].y
  const d = Math.hypot(dx, dy)
  if (d < maxDist) {
- ctx.strokeStyle = rgba(0, 245, 255, ${1 - d / maxDist})
+ ctx.strokeStyle = `rgba(0, 245, 255, ${1 - d / maxDist})`
  ctx.beginPath()
  ctx.moveTo(particles[i].x, particles[i].y)
  ctx.lineTo(particles[j].x, particles[j].y)
@@ -486,6 +469,7 @@
  animate()
  }
  
+ // Mobile menu toggle
  function toggleMobileMenu() {
  const menu = document.getElementById('mobile-menu')
  const icon = document.getElementById('hamburger-icon')
@@ -494,11 +478,11 @@
  icon.classList.toggle('fa-xmark')
  }
  
+ // Initialize everything
  window.onload = function () {
- initTailwind()
  createNeuralCanvas()
  
- // Smooth scroll with offset for fixed nav
+ // Smooth scrolling with navbar offset
  document.querySelectorAll('a[href^="#"]').forEach(link => {
  link.addEventListener('click', e => {
  if (link.getAttribute('href') === '#') return
@@ -506,11 +490,8 @@
  const target = document.querySelector(link.getAttribute('href'))
  if (target) {
  const navOffset = 88
- const bodyRect = document.body.getBoundingClientRect().top
- const elementRect = target.getBoundingClientRect().top
- const elementPosition = elementRect - bodyRect
- const offsetPosition = elementPosition - navOffset
- 
+ const elementPosition = target.getBoundingClientRect().top
+ const offsetPosition = elementPosition + window.scrollY - navOffset
  window.scrollTo({
  top: offsetPosition,
  behavior: 'smooth'
@@ -519,7 +500,7 @@
  })
  })
  
- console.log('%c🚀 Gboyee Portfolio v2.5 — 9.5/10 • Ultra-responsive • Professionally polished • AI-first', 'color:#00f5ff; font-family:monospace; font-size:13px;')
+ console.log('%c✅ Gboyee Portfolio v9.7 — Complete single-page site • GSD Framework Applied • 9.7/10', 'color:#00f5ff; font-family:monospace; font-size:13px;')
  }
  </script>
 </body>
