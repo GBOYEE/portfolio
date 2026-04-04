@@ -3,29 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gboyee | AI Security Engineer</title>
+<title>GBOYEE — AI Security & Multi‑Agent Systems</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #e5e5e5; overflow-x: hidden; }
+  html, body { max-width: 100%; overflow-x: hidden; }
+  body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #e5e5e5; line-height: 1.7; }
+  html { scroll-behavior: smooth; }
   .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.06); }
-  .accent { color: #00f5ff; }
-  .accent-bg { background: #00f5ff; }
+  .accent { color: #22d3ee; }
+  .accent-bg { background: #22d3ee; }
   .nav-scroll { position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .hero { min-height: 100vh; display: flex; align-items: center; position: relative; }
-  .section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .hero { min-height: 100vh; display: flex; align-items: center; position: relative; background: radial-gradient(circle at 30% 20%, #1a1a2e 0%, #0a0a0a 60%, #16213e 100%); }
+  .section { padding: 6rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+  @media (min-width: 768px) { .section { padding: 8rem 2rem; } }
   .grid-projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
   .card { border-radius: 1rem; padding: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-  .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(0,245,255,0.15); }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(34,211,238,0.15); }
   .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 600; transition: all 0.2s; }
-  .btn-primary { background: #00f5ff; color: #0a0a0a; }
-  .btn-primary:hover { transform: scale(1.05); }
-  .btn-outline { border: 1px solid #00f5ff; color: #00f5ff; }
-  .btn-outline:hover { background: rgba(0,245,255,0.1); }
+  .btn-primary { background: #22d3ee; color: #0a0a0a; box-shadow: 0 0 10px rgba(34,211,238,0.3); }
+  .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,211,238,0.6); }
+  .btn-outline { border: 1px solid #22d3ee; color: #22d3ee; }
+  .btn-outline:hover { background: rgba(34,211,238,0.1); }
+  a:focus-visible, button:focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
   .skill-tag { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(255,255,255,0.05); border-radius: 9999px; font-size: 0.875rem; margin: 0.25rem; }
-  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body class="antialiased">
@@ -33,34 +35,32 @@
 <!-- Navbar -->
 <nav class="nav-scroll glass">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <div class="text-xl font-bold tracking-tight accent">Gboyee</div>
+    <div class="text-xl font-bold tracking-tight accent">GBOYEE</div>
     <div class="hidden md:flex gap-8">
       <a href="#about" class="hover:text-white transition">About</a>
       <a href="#work" class="hover:text-white transition">Work</a>
       <a href="#skills" class="hover:text-white transition">Skills</a>
       <a href="#contact" class="hover:text-white transition">Contact</a>
     </div>
-    <button id="menu-btn" class="md:hidden text-xl"><i class="fa-solid fa-bars"></i></button>
+    <button id="menu-btn" class="md:hidden text-xl" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#0a0a0a] p-6 flex flex-col gap-6 transform translate-x-full transition-transform md:hidden">
+    <button id="close-menu" class="self-end text-xl" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about" class="text-lg">About</a>
+    <a href="#work" class="text-lg">Work</a>
+    <a href="#skills" class="text-lg">Skills</a>
+    <a href="#contact" class="text-lg">Contact</a>
   </div>
 </nav>
 
-<!-- Mobile menu -->
-<div id="mobile-menu" class="fixed inset-0 z-40 bg-[#0a0a0a] p-6 flex flex-col gap-6 transform translate-x-full transition-transform md:hidden">
-  <button id="close-menu" class="self-end text-2xl"><i class="fa-solid fa-xmark"></i></button>
-  <a href="#about" class="text-lg">About</a>
-  <a href="#work" class="text-lg">Work</a>
-  <a href="#skills" class="text-lg">Skills</a>
-  <a href="#contact" class="text-lg">Contact</a>
-</div>
-
 <!-- Hero -->
 <section class="hero">
-  <canvas id="hero-particles" class="absolute inset-0 w-full h-full opacity-20"></canvas>
+  <canvas id="hero-particles" class="absolute inset-0 w-full h-full opacity-20" style="max-width: 100%;"></canvas>
   <div class="max-w-6xl mx-auto px-6 relative z-10">
     <div class="max-w-2xl">
       <p class="accent mb-4 text-sm tracking-widest uppercase">AI Security Engineer • Nigeria</p>
-      <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">Secure AI that <span class="accent">actually ships</span>.</h1>
-      <p class="text-lg text-gray-400 mb-8">I build production-grade AI security infrastructure with ethical alignment and autonomous agents. End-to-end tooling for vulnerability scanning, RLHF-based alignment, and multi-agent orchestration.</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6" style="text-shadow: 0 0 20px rgba(34,211,238,0.15);">Secure AI that <span class="accent">actually ships</span>.</h1>
+      <p class="text-lg text-gray-400 mb-8">I build production‑grade AI security infrastructure with ethical alignment and autonomous agents. End‑to‑end tooling for vulnerability scanning, RLHF‑based alignment, and multi‑agent orchestration.</p>
       <div class="flex gap-4 flex-wrap">
         <a href="#work" class="btn btn-primary"><i class="fa-solid fa-arrow-right"></i> Explore Work</a>
         <a href="https://github.com/GBOYEE" target="_blank" class="btn btn-outline"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -76,18 +76,17 @@
       <h2 class="text-3xl font-bold mb-6">About</h2>
     </div>
     <div class="md:col-span-8 space-y-6 text-gray-300">
-      <p>I design and ship production AI security systems that bridge cutting-edge research with real-world reliability. My work focuses on building secure, auditable, and ethically aligned AI infrastructure.</p>
-      <p>The <strong class="text-white">HiveSec ecosystem</strong> is my flagship open-source project: a complete security layer for autonomous AI agents, featuring vulnerability scanners, RLHF alignment modules, and ethics auditing pipelines.</p>
+      <p>I design and ship production AI security systems that bridge cutting‑edge research with real‑world reliability. My work focuses on building secure, auditable, and ethically aligned AI infrastructure.</p>
+      <p>The <strong class="text-white">HiveSec ecosystem</strong> is my flagship open‑source project: a complete security layer for autonomous AI agents, featuring vulnerability scanners, RLHF alignment modules, and ethics auditing pipelines.</p>
       <p>Based in Nigeria, I’m committed to inclusive AI that serves diverse global communities.</p>
-      
       <div class="grid grid-cols-2 gap-6 mt-8">
-        <div class="glass p-6 rounded-2xl">
-          <div class="text-3xl font-bold accent">29+</div>
-          <div class="text-sm text-gray-400">Open-source repositories</div>
+        <div class="glass p-6 rounded-2xl text-center">
+          <div class="text-5xl font-bold accent">29+</div>
+          <div class="text-sm text-gray-400 mt-1">Open‑source repositories</div>
         </div>
-        <div class="glass p-6 rounded-2xl">
-          <div class="text-3xl font-bold accent">HiveSec</div>
-          <div class="text-sm text-gray-400">v0.3 in production</div>
+        <div class="glass p-6 rounded-2xl text-center">
+          <div class="text-5xl font-bold accent">HiveSec</div>
+          <div class="text-sm text-gray-400 mt-1">v0.3 in production</div>
         </div>
       </div>
     </div>
@@ -101,18 +100,20 @@
     <h2 class="text-3xl font-bold mt-2">Tools I ship with daily</h2>
   </div>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <!-- Backend AI Core -->
     <div class="glass p-4 rounded-xl text-center"><i class="fa-brands fa-python text-2xl mb-2 accent"></i><br>Python</div>
-    <div class="glass p-4 rounded-xl text-center"><i class="fa-brands fa-js text-2xl mb-2 accent"></i><br>TypeScript</div>
     <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">⚡</div>FastAPI</div>
-    <div class="glass p-4 rounded-xl text-center"><i class="fa-brands fa-react text-2xl mb-2 accent"></i><br>React/Next.js</div>
-    <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">📡</div>Streamlit</div>
     <div class="glass p-4 rounded-xl text-center"><i class="fa-brands fa-docker text-2xl mb-2 accent"></i><br>Docker</div>
     <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">🔴</div>Redis</div>
+    <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">📡</div>Streamlit</div>
     <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">⛓️</div>Solana/Web3</div>
     <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">🧬</div>RLHF Alignment</div>
     <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">🔍</div>Vulnerability Scanning</div>
-    <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">🤖</div>Multi-Agent Systems</div>
+    <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">🤖</div>Multi‑Agent Systems</div>
     <div class="glass p-4 rounded-xl text-center"><div class="text-2xl mb-2">🛡️</div>Ethical AI Auditing</div>
+    <!-- Frontend (to justify pinned HTML repos) -->
+    <div class="glass p-4 rounded-xl text-center"><i class="fa-brands fa-js text-2xl mb-2 accent"></i><br>TypeScript</div>
+    <div class="glass p-4 rounded-xl text-center"><i class="fa-brands fa-react text-2xl mb-2 accent"></i><br>React/Next.js</div>
   </div>
 </section>
 
@@ -120,44 +121,79 @@
 <section id="work" class="section">
   <div class="mb-12">
     <span class="accent text-sm tracking-widest uppercase">Selected Work</span>
-    <h2 class="text-3xl font-bold mt-2">Shipped AI systems that are secure by design</h2>
+    <h2 class="text-3xl font-bold mt-2">Open‑source AI systems I’m building</h2>
   </div>
   <div class="grid-projects">
     <div class="card glass">
-      <div class="text-xs text-gray-500 mb-2">Multi-Agent Orchestration</div>
-      <h3 class="text-xl font-bold mb-3">OpenClaw AI</h3>
-      <p class="text-gray-400 mb-4">Autonomous multi-agent platform with secure hive messaging, self-healing capabilities, and production-grade orchestration.</p>
+      <div class="text-xs text-gray-500 mb-2">AI Operator</div>
+      <h3 class="text-xl font-bold mb-3">xander‑operator</h3>
+      <p class="text-gray-400 mb-4">AI operator with browse, fill, research, and vector memory — a building block for autonomous agents.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Redis</span>
+      </div>
+      <a href="https://github.com/GBOYEE/xander-operator" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View Repo</a>
+    </div>
+
+    <div class="card glass">
+      <div class="text-xs text-gray-500 mb-2">Multi‑Agent Orchestration</div>
+      <h3 class="text-xl font-bold mb-3">xander‑hive‑framework</h3>
+      <p class="text-gray-400 mb-4">Multi‑agent AI orchestration framework with RLHF‑style loops for continuous improvement.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Streamlit</span>
+      </div>
+      <a href="https://github.com/GBOYEE/xander-hive-framework" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View Repo</a>
+    </div>
+
+    <div class="card glass">
+      <div class="text-xs text-gray-500 mb-2">Security Dashboard</div>
+      <h3 class="text-xl font-bold mb-3">HiveSec‑Ecosystem‑Hub</h3>
+      <p class="text-gray-400 mb-4">Streamlit dashboard for multi‑agent security operations: vulnerability scanning, alignment checks, and audit trails.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="skill-tag">Streamlit</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Redis</span>
+      </div>
+      <a href="https://github.com/GBOYEE/HiveSec-Ecosystem-Hub" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View Repo</a>
+    </div>
+
+    <div class="card glass">
+      <div class="text-xs text-gray-500 mb-2">AI Infrastructure</div>
+      <h3 class="text-xl font-bold mb-3">aiopsx</h3>
+      <p class="text-gray-400 mb-4">Production‑ready toolkit for deploying, monitoring, and securing AI agents at scale.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Redis</span>
+      </div>
+      <a href="https://github.com/GBOYEE/aiopsx" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View Repo</a>
+    </div>
+
+    <div class="card glass">
+      <div class="text-xs text-gray-500 mb-2">Multi‑Agent Core</div>
+      <h3 class="text-xl font-bold mb-3">openclaw</h3>
+      <p class="text-gray-400 mb-4">Open‑source multi‑agent platform with secure hive messaging, self‑healing, and production‑grade orchestration.</p>
       <div class="flex flex-wrap gap-2 mb-4">
         <span class="skill-tag">Python</span>
         <span class="skill-tag">Redis</span>
         <span class="skill-tag">OpenRouter</span>
       </div>
-      <a href="https://github.com/GBOYEE" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View on GitHub</a>
+      <a href="https://github.com/GBOYEE/openclaw" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View Repo</a>
     </div>
 
     <div class="card glass">
-      <div class="text-xs text-gray-500 mb-2">AI Security Infrastructure</div>
-      <h3 class="text-xl font-bold mb-3">HiveSec Ecosystem</h3>
-      <p class="text-gray-400 mb-4">Complete open-source security suite for AI agents: scanners, RLHF alignment, ethics auditing, and secure deployment pipelines.</p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="skill-tag">FastAPI</span>
-        <span class="skill-tag">Next.js</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Streamlit</span>
-      </div>
-      <a href="https://github.com/GBOYEE" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View on GitHub</a>
-    </div>
-
-    <div class="card glass">
-      <div class="text-xs text-gray-500 mb-2">On-Chain AI Agent</div>
-      <h3 class="text-xl font-bold mb-3">DegenTrader</h3>
-      <p class="text-gray-400 mb-4">Autonomous Solana trading agent powered by real-time on-chain signals and Pump.fun integration.</p>
+      <div class="text-xs text-gray-500 mb-2">Automation Pipeline</div>
+      <h3 class="text-xl font-bold mb-3">auto‑sme</h3>
+      <p class="text-gray-400 mb-4">Automated subject‑matter‑expert pipeline for AI‑assisted content generation and validation.</p>
       <div class="flex flex-wrap gap-2 mb-4">
         <span class="skill-tag">Python</span>
-        <span class="skill-tag">Solana</span>
-        <span class="skill-tag">Birdeye</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Streamlit</span>
       </div>
-      <a href="https://github.com/GBOYEE" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View on GitHub</a>
+      <a href="https://github.com/GBOYEE/auto-sme" target="_blank" class="accent hover:underline flex items-center gap-2"><i class="fa-brands fa-github"></i> View Repo</a>
     </div>
   </div>
 </section>
@@ -167,77 +203,52 @@
   <div class="max-w-2xl mx-auto text-center">
     <h2 class="text-3xl font-bold mb-4">Open to AI Engineering & Security Roles</h2>
     <p class="text-gray-400 mb-8">I’m actively looking for remote opportunities where I can apply my expertise in autonomous AI systems, security infrastructure, and ethical alignment. Let’s build the future together.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-      <a href="mailto:Oyebanjiadegboyee@gmail.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
-      <a href="https://x.com/Gboyee_0" target="_blank" class="btn btn-outline"><i class="fa-brands fa-x-twitter"></i> @Gboyee_0</a>
-    </div>
-    <div class="text-sm text-gray-500">
-      Based in Nigeria • Fully Remote
-    </div>
+    <a href="mailto:Oyebanjiadegboyee@gmail.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="border-t border-gray-800 py-8 text-center text-sm text-gray-500">
-  <div class="flex justify-center gap-6 mb-4">
-    <a href="https://gboyee.github.io" class="hover:text-white">Portfolio</a>
-    <a href="https://github.com/GBOYEE" target="_blank" class="hover:text-white">GitHub</a>
-    <a href="https://x.com/Gboyee_0" target="_blank" class="hover:text-white">X</a>
-  </div>
-  <div>© 2026 Oyebanji Adegboyega • All rights reserved</div>
-</footer>
-
 <script>
-// Minimal particle canvas (lightweight)
-(function() {
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const closeBtn = document.getElementById('close-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+  closeBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+  // Close menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+  });
+  // Simple particle animation (optional, kept minimal)
   const canvas = document.getElementById('hero-particles');
-  if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let w, h, particles = [];
+  let width, height, particles = [];
   function resize() {
-    w = canvas.width = canvas.offsetWidth;
-    h = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth;
+    height = canvas.height = canvas.offsetHeight;
   }
   window.addEventListener('resize', resize);
   resize();
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 50; i++) {
     particles.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      r: Math.random() * 1.5 + 0.5
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 2 + 1
     });
   }
   function animate() {
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#00f5ff';
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#22d3ee';
     particles.forEach(p => {
       p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > w) p.vx *= -1;
-      if (p.y < 0 || p.y > h) p.vy *= -1;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
     });
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i+1; j < particles.length; j++) {
-        const d = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-        if (d < 100) {
-          ctx.strokeStyle = `rgba(0,245,255,${1 - d/100})`;
-          ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
-        }
-      }
-    }
     requestAnimationFrame(animate);
   }
   animate();
-})();
-
-// Mobile menu
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-menu');
-const mobileMenu = document.getElementById('mobile-menu');
-menuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
-closeBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
 </script>
 </body>
 </html>
