@@ -434,7 +434,7 @@
  this.r = Math.random() * 2.8 + 1
  }
  update() {
- this.x += this.vxthis.y += this.vy
+ this.x += this.vx; this.y += this.vy
  if (this.x < 0 || this.x > w) this.vx *= -1
  if (this.y < 0 || this.y > h) this.vy *= -1
  }
