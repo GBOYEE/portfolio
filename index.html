@@ -9,11 +9,9 @@
  <script src="https://cdn.tailwindcss.com"></script>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
  <style>
- @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
  
- :root {
- --accent: #00f5ff;
- }
+ :root { --accent: #00f5ff; }
  
  * {
  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, transform, box-shadow;
@@ -21,37 +19,23 @@
  transition-duration: 200ms;
  }
  
- .tail-container * {
- font-family: 'Inter', system_ui, sans-serif;
- }
+ .tail-container * { font-family: 'Inter', system_ui, sans-serif; }
+ .logo-font { font-family: 'Space Grotesk', sans-serif; }
  
- .logo-font {
- font-family: 'Space Grotesk', sans-serif;
- }
-
- body {
- background: #0a0a0a;
- }
- 
+ body { background: #0a0a0a; }
  .hero-bg {
  background: radial-gradient(circle at 30% 20%, #1a1a2e 0%, #0a0a0a 50%, #16213e 100%);
  }
- 
  .neon-text {
- text-shadow: 
- 0 0 12px #00f5ff,
- 0 0 24px #00f5ff;
+ text-shadow: 0 0 12px #00f5ff, 0 0 24px #00f5ff;
  }
- 
  .glass {
  background: rgba(255,255,255,0.06);
  backdrop-filter: blur(16px);
  }
- 
  .project-card {
  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
  }
- 
  .project-card:hover {
  transform: translateY(-8px) scale(1.02);
  box-shadow: 0 30px 60px -15px rgb(0 245 255 / 0.2);
@@ -63,13 +47,11 @@
  .section-header { font-size: 2.25rem !important; }
  }
  
- .touch-target {
- min-height: 48px;
- min-width: 48px;
- }
+ .touch-target { min-height: 48px; min-width: 48px; }
  </style>
 </head>
 <body class="tail-container text-white overflow-x-hidden">
+
  <!-- NAVBAR -->
  <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
  <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -88,6 +70,7 @@
  <a href="#skills" class="hover:text-[#00f5ff] touch-target flex items-center px-1">Expertise</a>
  <a href="#contact" class="hover:text-[#00f5ff] touch-target flex items-center px-1">Contact</a>
  </div>
+
  <!-- GitHub + Mobile Toggle -->
  <div class="flex items-center gap-4">
  <a href="https://github.com/GBOYEE" target="_blank"
@@ -101,6 +84,7 @@
  </button>
  </div>
  </div>
+ 
  <!-- Mobile Menu -->
  <div id="mobile-menu" class="hidden md:hidden px-6 pb-10 bg-[#0a0a0a] border-t border-white/10">
  <div class="flex flex-col gap-6 text-xl font-medium pt-8">
@@ -144,7 +128,9 @@
  <p class="max-w-lg text-lg md:text-xl text-zinc-300 mb-12 leading-relaxed">
  I build secure, production-grade AI systems that ship. 
  End-to-end tooling for autonomous code generation, vulnerability scanning, and ethical alignment.
- </p><div class="flex flex-wrap gap-4">
+ </p>
+ 
+ <div class="flex flex-wrap gap-4">
  <a href="#work" 
  class="px-10 py-6 bg-white text-black rounded-3xl font-semibold flex items-center gap-4 text-lg hover:scale-105 active:scale-95 touch-target shadow-xl shadow-cyan-500/10">
  <span>Explore My Work</span>
